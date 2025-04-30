@@ -15,6 +15,7 @@ intentos_max = int(input("¿Cuántos intentos desea tener?: "))
 zona_tesoro = random.randint(inicio, fin)
 intento = 1
 acertado = False
+tu_mejor_distancia = 1000
 
 while intento <= intentos_max:
     eleccion = int(input(f"Intento {intento} - Elige una zona: "))
@@ -23,14 +24,17 @@ while intento <= intentos_max:
         print("¡Tesoro encontrado! ¡Felicidades, pirata!")
         acertado = True
         break
-    elif intento == 2:
+    else:
+        #calcula el número absoluto de la diferencia (siempro positivo)
         distancia = abs(eleccion - zona_tesoro)
+        if distancia < tu_mejor_distancia:
+            tu_mejor_intento = distancia
         if distancia < 3:
             print("Muy cerca...")
         else:
             print("Muy lejos...")
-    
     intento += 1
 
 if not acertado:
-    print("El tesoro seguirá perdido por siempre...")
+    print(f" El número era: {zona_tesoro}. El tesoro seguirá perdido por siempre...")
+    print(f" Tu distancia mas cercana fué: {tu_mejor_intento}")
